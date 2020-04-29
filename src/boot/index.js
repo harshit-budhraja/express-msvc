@@ -1,4 +1,5 @@
 const { utilities } = global;
+require('dotenv').config();
 const { env } = process;
 const bootstrapConfig = require('./config');
 const bootstrapLogger = require('./logger');
