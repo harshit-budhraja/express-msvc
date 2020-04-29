@@ -1,19 +1,7 @@
 const express = require("express");
 const { utilities } = global;
 const http = require('http');
-
-const versionMiddleware = async (req, res, next) => {
-    const { main_config, logger } = utilities;
-    const availableApiVersions = main_config.api.versions;
-    const reqApiVersion = req.url.split('/')[1];
-    logger.http(`Receiving request to api version: ${reqApiVersion}`);
-    if (availableApiVersions[reqApiVersion] && !availableApiVersions[reqApiVersion].deprecated) {
-        logger.http(`Request can be served.`);
-        next();
-    } else {
-        logger.http(`Request cannot be served.`);
-    }
-}
+const versionMiddleware = require('./versionMiddleware');
 
 const bootstrapApi = () => {
     const { main_config, logger } = utilities;

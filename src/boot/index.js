@@ -6,6 +6,7 @@ const bootstrapApi = require('./api');
 
 const bootstrap = () => {
     try {
+        utilities.env = env;
         utilities.main_config = bootstrapConfig();
         utilities.logger = bootstrapLogger();
         utilities.logger.info(`Environment: ${env.NODE_ENV}`);

@@ -10,7 +10,7 @@ const logFormat = printf(({ level, message, timestamp }) => {
 });
 
 const bootstrapLogger = () => {
-    const { main_config} = utilities;
+    const { main_config } = utilities;
     timezone = main_config.logging.timezone;
     return winston.createLogger({
         level: main_config.logging.level,
