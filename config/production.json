@@ -1,0 +1,17 @@
+{
+    "express": {
+        "port": 3000,
+        "timeout": 30000
+    },
+    "api": {
+        "versions": {
+            "v1.0": {
+                "deprecated": false
+            }
+        }
+    },
+    "logging": {
+        "level": "debug",
+        "timezone": "Asia/Kolkata"
+    }
+}
