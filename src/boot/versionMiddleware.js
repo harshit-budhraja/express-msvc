@@ -3,12 +3,13 @@ const { utilities } = global;
 const exemptedEnv = ["production"];
 
 const versionMiddleware = async (req, res, next) => {
+    const functionTag = "versionMiddleware";
     const { main_config, logger, env } = utilities;
     const availableApiVersions = main_config.api.versions;
     const reqApiVersion = req.url.split('/')[1];
-    logger.http(`Receiving request to api version: ${reqApiVersion}`);
+    logger.http(`${functionTag}> Receiving request to api version: ${reqApiVersion}`);
     if (availableApiVersions[reqApiVersion] && !availableApiVersions[reqApiVersion].deprecated) {
-        logger.http(`Request can be served.`);
+        logger.http(`${functionTag}> Request can be served.`);
         next();
     } else {
         const error = {
@@ -23,8 +24,8 @@ const versionMiddleware = async (req, res, next) => {
                 rca.push(`${reqApiVersion} is deprecated`);
             error.rca = rca;
         }
-        logger.http(`Request cannot be served.`);
-        logger.http(`Responding with ${JSON.stringify(error)}`);
+        logger.http(`${functionTag}> Request cannot be served.`);
+        logger.http(`${functionTag}> Responding with ${JSON.stringify(error)}`);
         res.status(error.status).send(error);
     }
 }
