@@ -1,21 +1,21 @@
 {
-  "name": "spotisync-server",
+  "name": "express-msvc",
   "version": "1.0.0",
-  "description": "A service for handling synchronisation of Spotify playbacks across premium users.",
+  "description": "",
   "main": "src/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://harshit-budhraja@github.com/harshit-budhraja/spotisync-server.git"
+    "url": "git+https://github.com/harshit-budhraja/express-msvc.git"
   },
   "author": "Harshit Budhraja",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/harshit-budhraja/spotisync-server/issues"
+    "url": "https://github.com/harshit-budhraja/express-msvc/issues"
   },
-  "homepage": "https://github.com/harshit-budhraja/spotisync-server",
+  "homepage": "https://github.com/harshit-budhraja/express-msvc",
   "dependencies": {
     "config": "3.3.1",
     "express": "4.17.1",

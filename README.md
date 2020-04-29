@@ -1,6 +1,4 @@
-# Spotisync Server
-
-Server for spotisync.
+# Express Microservice
 
 ## Developing locally
 
@@ -9,8 +7,8 @@ To run this server on local:
 1. Clone this repository and navigate inside it.
 
 ```
-git clone https://github.com/harshit-budhraja/spotisync-server.git
-cd spotisync-server/
+git clone https://github.com/harshit-budhraja/express-msvc.git
+cd express-msvc/
 ```
 
 2. Install package dependencies using npm - `npm install`
