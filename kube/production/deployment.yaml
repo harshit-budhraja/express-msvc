@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: express-api
-  namespace: test
+  namespace: default
 spec:
   replicas: 1
   selector:
@@ -19,3 +19,13 @@ spec:
           ports:
             - containerPort: 3000
           imagePullPolicy: Never
+          env:
+          - name: NODE_ENV
+            value: 'production'
+          volumeMounts:
+          - mountPath: /msvc/config
+            name: conf-volume
+      volumes:
+      - configMap:
+          name: msvc-config
+        name: conf-volume 

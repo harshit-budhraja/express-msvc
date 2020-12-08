@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: express-api
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express-api
+  template:
+    metadata:
+      labels:
+        app: express-api
+    spec:
+      containers:
+        - name: express-api
+          image: express-msvc:latest
+          ports:
+            - containerPort: 3000
+          imagePullPolicy: Never
+          env:
+          - name: NODE_ENV
+            value: 'dev'
+          volumeMounts:
+          - mountPath: /msvc/config
+            name: conf-volume
+      volumes:
+      - configMap:
+          name: msvc-config
+        name: conf-volume 

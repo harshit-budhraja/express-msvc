@@ -1,0 +1,22 @@
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations: {}
+  name: express-api-hpa
+  namespace: default
+spec:
+  maxReplicas: 10
+  metrics:
+  - resource:
+      name: memory
+      targetAverageUtilization: 70
+    type: Resource
+  - resource:
+      name: cpu
+      targetAverageUtilization: 70
+    type: Resource
+  minReplicas: 3
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: express-api
