@@ -14,5 +14,14 @@
     "logging": {
         "level": "debug",
         "timezone": "Asia/Kolkata"
+    },
+    "sequelize": {
+        "config": {
+            "dialect": "mysql",
+            "host": "localhost",
+            "database": "DATABASE_NAME",
+            "username": "USERNAME",
+            "password": "PASSWORD"
+        }
     }
 }

@@ -4,6 +4,7 @@ const { env } = process;
 const bootstrapConfig = require('./config');
 const bootstrapLogger = require('./logger');
 const bootstrapApi = require('./api');
+const bootstrapSequelize = require('./sequelize');
 
 const bootstrap = () => {
     const functionTag = "boot";
@@ -14,7 +15,10 @@ const bootstrap = () => {
         utilities.logger.info(`${functionTag}> Environment: ${env.NODE_ENV}`);
         utilities.logger.info(`${functionTag}> Initialised config (${env.NODE_ENV}.json)`);
         utilities.logger.info(`${functionTag}> Initialised logger (${utilities.main_config.logging.level})`);
-        utilities.server = bootstrapApi();
+        bootstrapSequelize().then((sequelize) => {
+            utilities.sequelize = sequelize;
+            utilities.server = bootstrapApi();
+        }).catch((error) => { throw error; });
     } catch (error) {
         console.log(JSON.stringify(error, Object.getOwnPropertyNames(error)));
     }
