@@ -15,7 +15,7 @@ const bootstrapApi = () => {
     /**
      * root_path should be something like '/api'.
      */
-    app.use(`${main_config.root_path == '/' ? "" : main_config.root_path}/v1.0`, require('../api/v1.0'));
+    app.use(`${main_config.root_path == '/' ? "" : main_config.root_path}/v1.0`, require('../api/v1.0/routes'));
     let server = http.createServer(app).listen(expressPort, () => {
         logger.info(`${functionTag}> Initialised Api on port: ${expressPort}`);
     });
