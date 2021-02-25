@@ -1,6 +1,8 @@
-const express = require("express");
 const { utilities } = global;
+const express = require("express");
 const http = require('http');
+const cors = require('cors');
+const bodyParser = require("body-parser");
 const versionMiddleware = require('./versionMiddleware');
 
 const bootstrapApi = () => {
@@ -11,6 +13,10 @@ const bootstrapApi = () => {
     app.get('/', async (req, res) => {
         res.status(200).send("Ok");
     });
+    app.use(bodyParser.json({
+        limit: '50mb'
+    }));
+    app.use(cors());
     app.use(main_config.root_path, versionMiddleware);
     /**
      * root_path should be something like '/api'.
