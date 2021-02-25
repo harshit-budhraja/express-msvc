@@ -17,11 +17,16 @@
     },
     "sequelize": {
         "config": {
+            "_meta_desc_": "Get from env: DB_NAME, DB_USERNAME, DB_PASSWORD",
             "dialect": "mysql",
-            "host": "localhost",
-            "database": "DATABASE_NAME",
-            "username": "USERNAME",
-            "password": "PASSWORD"
+            "host": "localhost"
+        }
+    },
+    "kafka": {
+        "global": {
+            "clientId": "express-msvc",
+            "brokers": ["localhost:9092"],
+            "connectionTimeout": 3000
         }
     }
 }
