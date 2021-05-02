@@ -1,4 +1,8 @@
 {
+    "boot": {
+        "kafka": false,
+        "mysql": false
+    },
     "express": {
         "port": 3000,
         "timeout": 30000

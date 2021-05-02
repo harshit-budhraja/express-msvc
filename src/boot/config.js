@@ -1,6 +1,7 @@
 const config = require('config');
 
-const bootstrapConfig = () => {
+const bootstrapConfig = (utilities) => {
+    utilities.main_config = config;
     return config;
 }
 

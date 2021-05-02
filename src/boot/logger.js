@@ -1,4 +1,3 @@
-const { utilities } = global;
 const moment = require('moment-timezone');
 const winston = require('winston');
 const { combine, timestamp, colorize, printf } = winston.format;
@@ -9,10 +8,10 @@ const logFormat = printf(({ level, message, timestamp }) => {
         : `[${moment.tz(timestamp, 'UTC').format('YYYY-MM-DD HH:mm:ss')}][${level}] ${message}`;
 });
 
-const bootstrapLogger = () => {
+const bootstrapLogger = (utilities) => {
     const { main_config } = utilities;
     timezone = main_config.logging.timezone;
-    return winston.createLogger({
+    const logger = winston.createLogger({
         level: main_config.logging.level,
         levels: {
             error: 0,
@@ -45,6 +44,8 @@ const bootstrapLogger = () => {
             new winston.transports.File({ filename: 'server.log' })
         ],
     });
+    utilities.logger = logger;
+    return logger;
 }
 
 module.exports = bootstrapLogger;

@@ -11,21 +11,22 @@ const bootstrap = async () => {
     const functionTag = "boot";
     try {
         utilities.env = env;
-        utilities.main_config = bootstrapConfig();
-        utilities.logger = bootstrapLogger();
+        bootstrapConfig(utilities);
+        bootstrapLogger(utilities);
+        /**
+         * #env
+         * NODE_ENV
+         */
         utilities.logger.info(`${functionTag}> Environment: ${env.NODE_ENV}`);
         utilities.logger.info(`${functionTag}> Initialised config (${env.NODE_ENV}.json)`);
         utilities.logger.info(`${functionTag}> Initialised logger (${utilities.main_config.logging.level})`);
-        const nextBootstraps = [
-            bootstrapSequelize(),
-            bootstrapKafka()
-        ];
-        const [sequelize, kafka] = await Promise.all(nextBootstraps);
-        if (sequelize) utilities.sequelize = sequelize;
-        if (kafka) utilities.kafka = kafka;
-        if (sequelize && kafka) {
-            utilities.server = bootstrapApi();
-        }
+        const nextBootstraps = [];
+        const bootKafka = utilities.main_config.boot.kafka;
+        const bootMysql = utilities.main_config.boot.mysql;
+        if (bootMysql) nextBootstraps.push(bootstrapSequelize(utilities));
+        if (bootKafka) nextBootstraps.push(bootstrapKafka(utilities));
+        await Promise.all(nextBootstraps);
+        utilities.server = bootstrapApi();
     } catch (error) {
         console.log(JSON.stringify(error, Object.getOwnPropertyNames(error)));
     }

@@ -1,7 +1,6 @@
-const { utilities } = global;
 const { Kafka } = require('kafkajs');
 
-const bootstrapKafka = async () => {
+const bootstrapKafka = async (utilities) => {
     const functionTag = "bootKafka";
     const { main_config, logger } = utilities;
     let kafka = null;
@@ -23,6 +22,7 @@ const bootstrapKafka = async () => {
     } catch (error) {
         logger.error(`${functionTag}> Unable to initialize kafka: ${JSON.stringify(error, Object.getOwnPropertyNames(error))}`);
     }
+    utilities.kafka = kafka;
     return kafka;
 };
 
