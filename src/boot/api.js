@@ -16,6 +16,7 @@ const bootstrapApi = () => {
     app.use(bodyParser.json({
         limit: '50mb'
     }));
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cors());
     app.use(main_config.root_path, versionMiddleware);
     /**
